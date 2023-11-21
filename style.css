@@ -1,11 +1,7 @@
 /* style.css */
-
-.navbar {
-    background-color: #333;
-    padding: 15px 0;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
+.intro {
+    background: url('img/img1.jpg')no-repeat center center fixed;
+    background-size: cover;
 }
 
 .navbar-brand {
@@ -39,6 +35,17 @@ body {
     font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.5s ease;
+}
+
+.light-theme body {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.dark-theme body {
+    background-color: #333333;
+    color: #ffffff;
 }
 
 .container {
@@ -187,26 +194,76 @@ footer a {
 }
 
 #themeToggleBtn {
-    background-color: #F7512E;
-    color: #fff;
+    background-color: transparent; /* делаем фон кнопки прозрачным */
+    color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    position: absolute; /* делаем кнопку абсолютно позиционированной */
+    top: 10px; /* задаем отступ сверху */
+    right: 10px; /* задаем отступ справа */
 }
 
-#themeToggleBtn:hover {
-    background-color: #fff;
-    color: #F7512E;
-}
-
-/* Добавим стили для текста текущей темы */
 #themeText {
     margin-top: 10px;
     font-size: 14px;
     color: #333333;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* Стили для иконок светлой и темной темы */
+#themeToggleBtn::before {
+    content: "\2600"; /* Unicode для солнца */
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.dark-theme #themeToggleBtn::before {
+    content: "\1F319"; /* Unicode для луны */
+    transform: rotate(180deg); /* Поворот иконки луны */
+}
+
+.light-theme #themeText::before {
+    content: "\1F31E"; /* Unicode для луны */
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.dark-theme #themeText::before {
+    content: "\2600"; /* Unicode для солнца */
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* Остальные стили */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Вы можете установить любое подходящее значение z-index */
+    background-color: #333;
+    padding: 15px 0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+}
+
+.transparent-header {
+    background-color: rgba(51, 51, 51, 0.5); /* Измените цвет по необходимости */
+    transition: background-color 0.3s ease;
+}
+
+/* Добавьте этот стиль, чтобы скрыть фон .intro при изменении темы */
+.dark-theme.intro {
+    background-image: none;
 }
 
 #gallery {
@@ -219,4 +276,3 @@ footer a {
     border-radius: 5px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
-
