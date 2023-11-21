@@ -1,13 +1,29 @@
 /* style.css */
+
 .intro {
-    background: url('img/img1.jpg')no-repeat center center fixed;
+    background: url('img/img1.jpg') no-repeat center center fixed;
     background-size: cover;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #333;
+    padding: 15px 0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-brand {
     font-family: 'Raleway', sans-serif;
     font-size: 24px;
     color: white;
+    text-decoration: none;
 }
 
 .navbar-toggler {
@@ -24,6 +40,7 @@
     color: white !important;
     margin-right: 15px;
     font-size: 18px;
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
@@ -78,18 +95,21 @@ body {
     margin-bottom: 20px;
 }
 
-.card-title {
+.card-title,
+.dark-theme .card-title {
     font-family: 'Lobster', cursive;
     color: #F7512E;
 }
 
-section h1 {
+section h1,
+.dark-theme section h1 {
     font-family: 'Lobster', cursive;
     color: #F7512E;
     margin-top: 40px;
 }
 
-section p {
+section p,
+.dark-theme section p {
     color: #555;
     line-height: 1.6;
 }
@@ -106,12 +126,23 @@ footer a {
 }
 
 @media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
     .navbar-toggler-icon {
         background-color: white;
     }
 }
 
-.animated {
+.animated,
+.active-section {
     opacity: 1;
     transform: translate(0, 0);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -123,145 +154,11 @@ footer a {
     transform: translateY(20px);
 }
 
-.active-section {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Стили для светлой темы */
-.light-theme {
-    background-color: #ffffff;
-    color: #333333;
-}
-
-/* Стили для темной темы */
-.dark-theme {
-    background-color: #333333;
-    color: #ffffff;
-}
-
-/* Стили для конкретных элементов в темной теме */
-.dark-theme .navbar {
-    background-color: #1a1a1a;
-}
-
-.dark-theme .navbar-brand {
-    color: #ffffff;
-}
-
-.dark-theme .navbar-toggler {
-    color: #ffffff;
-    border-color: #ffffff;
-}
-
-.dark-theme .navbar-nav a {
-    color: #ffffff !important;
-}
-
-.dark-theme footer {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-.dark-theme .intro {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-.dark-theme .intro h2 {
-    color: #ffffff;
-}
-
-.dark-theme .intro h4 {
-    color: #F7512E;
-}
-
-.dark-theme .card-title {
-    color: #F7512E;
-}
-
-.dark-theme section h1 {
-    color: #F7512E;
-}
-
-.dark-theme section p {
-    color: #ffffff;
-}
-
-.dark-theme #gallery img {
-    box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.1);
-}
-
-#themeToggleBtn {
-    background-color: transparent; /* делаем фон кнопки прозрачным */
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    position: absolute; /* делаем кнопку абсолютно позиционированной */
-    top: 10px; /* задаем отступ сверху */
-    right: 10px; /* задаем отступ справа */
-}
-
-#themeText {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333333;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-/* Стили для иконок светлой и темной темы */
-#themeToggleBtn::before {
-    content: "\2600"; /* Unicode для солнца */
-    font-size: 24px;
-    transition: transform 0.3s ease;
-}
-
-.dark-theme #themeToggleBtn::before {
-    content: "\1F319"; /* Unicode для луны */
-    transform: rotate(180deg); /* Поворот иконки луны */
-}
-
-.light-theme #themeText::before {
-    content: "\1F31E"; /* Unicode для луны */
-    font-size: 18px;
-    margin-right: 8px;
-}
-
-.dark-theme #themeText::before {
-    content: "\2600"; /* Unicode для солнца */
-    font-size: 18px;
-    margin-right: 8px;
-}
-
-/* Остальные стили */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Вы можете установить любое подходящее значение z-index */
-    background-color: #333;
-    padding: 15px 0;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-}
-
 .transparent-header {
-    background-color: rgba(51, 51, 51, 0.5); /* Измените цвет по необходимости */
+    background-color: rgba(51, 51, 51, 0.5);
     transition: background-color 0.3s ease;
 }
 
-/* Добавьте этот стиль, чтобы скрыть фон .intro при изменении темы */
 .dark-theme.intro {
     background-image: none;
 }
@@ -275,4 +172,91 @@ footer a {
     height: auto;
     border-radius: 5px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.themeButton {
+    list-style: none;
+}
+
+#themeToggleBtn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#themeText {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+#themeToggleBtn::before {
+    content: "\2600";
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.dark-theme #themeToggleBtn::before {
+    content: "\1F319";
+    transform: rotate(180deg);
+}
+
+.light-theme #themeText::before {
+    content: "\1F31E";
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.dark-theme #themeText::before {
+    content: "\2600";
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* Дополнительные стили */
+.transparent-header .navbar-brand,
+.transparent-header .navbar-nav a {
+    color: white; /* Цвет текста в прозрачной шапке */
+}
+
+.dark-theme .navbar,
+.dark-theme .navbar-brand,
+.dark-theme .navbar-toggler,
+.dark-theme .navbar-nav a,
+.dark-theme footer,
+.dark-theme .intro h2 {
+    color: #ffffff;
+}
+
+.dark-theme .navbar {
+    background-color: #1a1a1a;
+    padding: 15px 0;
+    box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .navbar-toggler {
+    border-color: #ffffff;
+}
+
+.dark-theme footer,
+.dark-theme .intro {
+    background-color: #1a1a1a;
+}
+
+.dark-theme .intro h4,
+.dark-theme .card-title {
+    color: #F7512E;
 }
