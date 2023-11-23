@@ -39,8 +39,7 @@ document.getElementById('themeToggleBtn1').addEventListener('click', toggleTheme
 document.addEventListener("DOMContentLoaded", function () {
     var navbar = document.querySelector(".navbar");
     var intro = document.querySelector(".intro");
-    var popap = document.getElementById("y8")
-   
+    var popap = document.getElementById("y8");
     function updateNavbar() {
         var scrollPosition = window.scrollY || window.pageYOffset;
 
