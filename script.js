@@ -41,6 +41,7 @@ function toggleTheme() {
 
 // Обработчик события для кнопки смены темы
 document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+document.getElementById('themeToggleBtn1').addEventListener('click', toggleTheme);
 
 // Проверяем, если у пользователя уже сохранена тема в localStorage
 const savedTheme = localStorage.getItem('theme');
