@@ -1,28 +1,14 @@
-// script.js
-
-
+// Функция для установки темы
 function setTheme(theme) {
     document.documentElement.className = theme;
     localStorage.setItem('theme', theme);
+    const intro = document.querySelector('.intro');
+    intro.style.backgroundImage = theme === 'dark-theme' ? "url('img/img2.jpg')" : "url('img/img1.jpg')";
 }
-function burgerClick(){
-    var navbar = document.getElementById("navbar");
-    var burger = document.getElementById("burger");
-    var burgerPopup =document.getElementById("burger-popup");
-    if (burger.classList.contains('active')) {
-       burger.classList.remove('active')
-       burgerPopup.classList.remove('active')
-       navbar.classList.remove('active')
-      } else {
-        burger.classList.add('active')
-        
-       burgerPopup.classList.add('active')
-       navbar.classList.add('active')
-      }
-}
-document.getElementById('burger').addEventListener('click',burgerClick)
 
+// Функция для переключения темы
 function toggleTheme() {
+    const intro = document.querySelector('.intro');
     if (document.documentElement.classList.contains('light-theme')) {
         setTheme('dark-theme');
     } else {
@@ -30,48 +16,55 @@ function toggleTheme() {
     }
 }
 
-document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
-document.getElementById('themeToggleBtn1').addEventListener('click', toggleTheme);
+// Функция для обработки клика на бургер-меню
+function burgerClick() {
+    var navbar = document.getElementById("navbar");
+    var burger = document.getElementById("burger");
+    var burgerPopup = document.getElementById("burger-popup");
+    burger.classList.toggle('active');
+    burgerPopup.classList.toggle('active');
+    navbar.classList.toggle('active');
+}
 
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
+// Функция для обновления навбара
+function updateNavbar() {
+    var scrollPosition = window.scrollY || window.pageYOffset;
     var navbar = document.querySelector(".navbar");
-    var intro = document.querySelector(".intro");
-    var popap = document.getElementById("y8");
-    function updateNavbar() {
-        var scrollPosition = window.scrollY || window.pageYOffset;
 
-        if (scrollPosition === 0) {
-            popap.style.opacity=0
-            navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
-        } else {
-            navbar.style.backgroundColor = "rgba(51, 51, 51, 1)";
-            popap.style.opacity=1
-        }
+    if (scrollPosition === 0) {
+        navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
+    } else {
+        navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
     }
+}
+
+// Обработчик события для кнопки смены темы
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleBtn1').addEventListener('click', toggleTheme);
+    document.getElementById('burger').addEventListener('click', burgerClick);
+
+    var navbarToggleBtn = document.querySelector(".navbar-toggler");
+    var navbarCollapse = document.querySelector(".navbar-collapse");
+    var intro = document.querySelector('.intro');
+    var savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark-theme') {
+        document.documentElement.classList.add("dark-theme");
+        intro.style.backgroundImage = "url('img/img2.jpg')";
+    } else {
+        intro.style.backgroundImage = "url('img/img1.jpg')";
+        document.documentElement.classList.add("light-theme");
+    }
+
+    navbarToggleBtn.addEventListener("click", function () {
+        navbarCollapse.classList.toggle("show");
+    });
 
     updateNavbar();
     window.addEventListener("scroll", updateNavbar);
-    if (intro.classList.contains('dark-theme')) {
-        intro.style.backgroundImage = "url('img/img2.jpg')";
-        localStorage.setItem('backgroundImage', 'img/img2.jpg');
-    } else {
-        intro.style.backgroundImage = "url('img/img1.jpg')";
-        localStorage.setItem('backgroundImage', 'img/img1.jpg');
-    }
-   
-    const savedImage = localStorage.getItem('backgroundImage');
 
-    if (savedImage) {
-        intro.style.backgroundImage = `url('${savedImage}')`;
-    }
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else {
-        setTheme('light-theme');
-    }
+    navbarToggleBtn.addEventListener("click", function () {
+        navbarCollapse.classList.toggle("show");
+    });
 });
-
