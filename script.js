@@ -56,9 +56,21 @@ if (savedTheme) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeToggleBtn1 = document.getElementById('themeToggleBtn1');
+
     const intro = document.querySelector('.intro');
 
     themeToggleBtn.addEventListener('click', function () {
+        intro.classList.toggle('dark-theme');
+        
+        // Проверяем, какая тема активна и меняем фон .intro соответственно
+        if (intro.classList.contains('dark-theme')) {
+            intro.style.backgroundImage = "url('img/img2.jpg')";
+        } else {
+            intro.style.backgroundImage = "url('img/img1.jpg')";
+        }
+    });
+    themeToggleBtn1.addEventListener('click', function () {
         intro.classList.toggle('dark-theme');
         
         // Проверяем, какая тема активна и меняем фон .intro соответственно
@@ -91,8 +103,21 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", updateNavbar);
 
     const themeToggleBtn = document.getElementById('themeToggleBtn');
+    
+    const themeToggleBtn1 = document.getElementById('themeToggleBtn1');
 
     themeToggleBtn.addEventListener('click', function () {
+        intro.classList.toggle('dark-theme');
+
+        // Проверяем, какая тема активна и меняем фон .intro соответственно
+        if (intro.classList.contains('dark-theme')) {
+            intro.style.backgroundImage = "url('img/img2.jpg')";
+        } else {
+            intro.style.backgroundImage = "url('img/img1.jpg')";
+        }
+    });
+
+    themeToggleBtn1.addEventListener('click', function () {
         intro.classList.toggle('dark-theme');
 
         // Проверяем, какая тема активна и меняем фон .intro соответственно
