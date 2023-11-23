@@ -1,11 +1,33 @@
 // script.js
+  document.addEventListener("DOMContentLoaded", function () {
+    var navbarToggleBtn = document.querySelector(".navbar-toggler");
+    var navbarCollapse = document.querySelector(".navbar-collapse");
+  
+    navbarToggleBtn.addEventListener("click", function () {
+      navbarCollapse.classList.toggle("show");
+    });
+  });
 
-// Функция для установки темы
 function setTheme(theme) {
     document.documentElement.className = theme;
     localStorage.setItem('theme', theme);
 }
-
+function burgerClick(){
+    var navbar = document.getElementById("navbar");
+    var burger = document.getElementById("burger");
+    var burgerPopup =document.getElementById("burger-popup");
+    if (burger.classList.contains('active')) {
+       burger.classList.remove('active')
+       burgerPopup.classList.remove('active')
+       navbar.classList.remove('active')
+      } else {
+        burger.classList.add('active')
+        
+       burgerPopup.classList.add('active')
+       navbar.classList.add('active')
+      }
+}
+document.getElementById('burger').addEventListener('click',burgerClick)
 // Функция для переключения темы
 function toggleTheme() {
     if (document.documentElement.classList.contains('light-theme')) {
@@ -78,5 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             intro.style.backgroundImage = "url('img/img1.jpg')";
         }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    var navbarToggleBtn = document.querySelector(".navbar-toggler");
+    var navbarCollapse = document.querySelector(".navbar-collapse");
+
+    navbarToggleBtn.addEventListener("click", function () {
+        navbarCollapse.classList.toggle("show");
     });
 });

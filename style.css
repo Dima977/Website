@@ -4,7 +4,9 @@
     background: url('img/img1.jpg') no-repeat center center fixed;
     background-size: cover;
 }
-
+.theme{
+    right:5%;
+}
 .navbar {
     position: fixed;
     top: 0;
@@ -17,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 1.5rem;
 }
 
 /* Стили для бренда в шапке */
@@ -50,6 +53,14 @@
     color: white;
     border-color: white;
     display: none; /* Скрываем иконку бургера для широких экранов */
+    font-size: 24px; /* Размер иконки бургера */
+    cursor: pointer;
+}
+
+.navbar-collapse{
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100vw;
 }
 
 body {
@@ -73,6 +84,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 0px;
 }
 
 .intro {
@@ -128,31 +140,79 @@ footer {
 footer a {
     color: #fff;
 }
-
+.burger-popup{
+    display: none;
+}
 @media (max-width: 768px) {
-    .navbar-toggler {
-        display: block;
-    }
-
     .navbar-nav {
-        display: none; /* Скрываем навигационные ссылки для мобильных устройств */
+        display: none;
         flex-direction: column;
-        width: 100%;
-        text-align: center;
         position: absolute;
         top: 80px; /* Выравниваем с учетом высоты шапки */
         left: 0;
         background-color: #333; /* Цвет фона для мобильного вида */
-        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+        width: 100%;
     }
 
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+      }
+      
+      .burger {
+        width: 30px;
+        height: 3px;
+        top:50%;
+        transform: translateY(-50%);
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+      .burger-popup.active{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 30px;
+        z-index: 900;
+      }
+      .burger-popup.active a{
+        color: white !important;
+        margin: 0 15px; /* Отступы между ссылками */
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .navbar.active{
+        align-items:first baseline;
+        height: 9rem;
+      }
+     
+      .burger-menu.active{
+        top:10%
+      }
+      .burger-menu.active .burger:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px);
+      }
+      
+      .burger-menu.active .burger:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .burger-menu.active .burger:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+      }
     .navbar-nav a {
-        margin: 10px 0; /* Отступы между ссылками на мобильных устройствах */
+        margin: 10px 15px; /* Отступы между ссылками на мобильных устройствах */
     }
 
     .navbar-nav.active {
         display: flex;
     }
+}
+
+li {
+    list-style-type: none;
+    list-style: none;
 }
 
 .animated,
@@ -204,8 +264,9 @@ footer a {
     display: flex;
     align-items: center;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    transform: translateY(-40%);
+    top: 50%;
+    right: 20%;
 }
 
 #themeText {
@@ -273,4 +334,22 @@ footer a {
 .dark-theme .intro h4,
 .dark-theme .card-title {
     color: #F7512E;
+}
+
+.dark-theme body {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Добавлен стиль для темного текста */
+.dark-theme,
+.dark-theme.intro,
+.dark-theme .navbar-nav a,
+.dark-theme footer,
+.dark-theme section p {
+    color: #ffffff; /* Цвет текста для темной темы */
+}
+
+.dark-theme.intro {
+    background-image: none;
 }
