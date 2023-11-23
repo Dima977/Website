@@ -143,6 +143,9 @@ footer a {
 .burger-popup{
     display: none;
 }
+.popup-name{
+    display: none;
+}
 @media (max-width: 768px) {
     .navbar-nav {
         display: none;
@@ -157,6 +160,7 @@ footer a {
     .burger-menu {
         display: block;
         cursor: pointer;
+        width: 2rem;
       }
       
       .burger {
@@ -172,8 +176,14 @@ footer a {
         position: absolute;
         display: flex;
         flex-direction: column;
-        top: 30px;
+        top: 10px;
+        left: 0;
         z-index: 900;
+      }
+      .burgrulist{
+        margin-block-end: 2em;
+        padding-inline-start: 0;
+        margin-top: 1rem;
       }
       .burger-popup.active a{
         color: white !important;
@@ -181,6 +191,16 @@ footer a {
         font-size: 18px;
         text-decoration: none;
         transition: color 0.3s ease;
+      }
+      .popup-name{
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+      }
+      .navbar{
+        height: 4rem;
       }
       .navbar.active{
         align-items:first baseline;
@@ -251,7 +271,7 @@ li {
 .themeButton {
     list-style: none;
 }
-
+#themeToggleBtn1,
 #themeToggleBtn {
     background-color: transparent;
     color: white;
@@ -277,13 +297,13 @@ li {
     align-items: center;
     transition: color 0.3s ease;
 }
-
+#themeToggleBtn1::before,
 #themeToggleBtn::before {
     content: "\2600";
     font-size: 24px;
     transition: transform 0.3s ease;
 }
-
+.dark-theme #themeToggleBtn1::before,
 .dark-theme #themeToggleBtn::before {
     content: "\1F319";
     transform: rotate(180deg);
