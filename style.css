@@ -22,7 +22,6 @@
     height: 1.5rem;
 }
 
-/* Стили для бренда в шапке */
 .navbar-brand {
     font-family: 'Raleway', sans-serif;
     font-size: 24px;
@@ -30,7 +29,6 @@
     text-decoration: none;
 }
 
-/* Стили для навигационных ссылок в шапке */
 .navbar-nav {
     display: flex;
     align-items: center;
@@ -38,7 +36,7 @@
 
 .navbar-nav a {
     color: white !important;
-    margin: 0 15px; /* Отступы между ссылками */
+    margin: 0 15px; 
     font-size: 18px;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -48,12 +46,11 @@
     color: #F7512E !important;
 }
 
-/* Стили для иконки бургера */
 .navbar-toggler {
     color: white;
     border-color: white;
-    display: none; /* Скрываем иконку бургера для широких экранов */
-    font-size: 24px; /* Размер иконки бургера */
+    display: none;
+    font-size: 24px; 
     cursor: pointer;
 }
 
@@ -151,9 +148,9 @@ footer a {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 80px; /* Выравниваем с учетом высоты шапки */
+        top: 80px;
         left: 0;
-        background-color: #333; /* Цвет фона для мобильного вида */
+        background-color: #333;
         width: 100%;
     }
 
@@ -187,7 +184,7 @@ footer a {
       }
       .burger-popup.active a{
         color: white !important;
-        margin: 0 15px; /* Отступы между ссылками */
+        margin: 0 15px; 
         font-size: 18px;
         text-decoration: none;
         transition: color 0.3s ease;
@@ -222,7 +219,7 @@ footer a {
         transform: rotate(45deg) translate(-6px, -6px);
       }
     .navbar-nav a {
-        margin: 10px 15px; /* Отступы между ссылками на мобильных устройствах */
+        margin: 10px 15px;
     }
 
     .navbar-nav.active {
@@ -324,10 +321,9 @@ li {
     margin-right: 8px;
 }
 
-/* Дополнительные стили */
 .transparent-header .navbar-brand,
 .transparent-header .navbar-nav a {
-    color: white; /* Цвет текста в прозрачной шапке */
+    color: white;
 }
 
 .dark-theme .navbar,
@@ -364,13 +360,12 @@ li {
     color: #ffffff;
 }
 
-/* Добавлен стиль для темного текста */
 .dark-theme,
 .dark-theme.intro,
 .dark-theme .navbar-nav a,
 .dark-theme footer,
 .dark-theme section p {
-    color: #ffffff; /* Цвет текста для темной темы */
+    color: #ffffff;
 }
 
 .dark-theme.intro {
