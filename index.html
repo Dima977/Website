@@ -10,38 +10,47 @@
     <link href="style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">  
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar top-nav-collapse">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar top-nav-collapse" id="navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html" style="font-family: 'Raleway', sans-serif;">
-                    <b>Стив Джобс Михайлович</b></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="burger-menu" id="burger">
+                            <div class="burger"></div>
+                            <div class="burger"></div>
+                            <div class="burger"></div>
+                          </div>
+                    <div class="burger-popup" id="burger-popup">
+                        <a class="navbar-brand" href="index.html" style="font-family: 'Raleway', sans-serif;">
+                            <b>Стив Джобс Михайлович</b></a>
+                            <a class="nav-link" href="#home">Домой</a>
+                            <a class="nav-link" href="#abouts">Биография</a>
+                            <a href="https://vk.com/id312160380" class="nav-link"><i class="fa fa-vk"></i></a>
+                            <a href="https://t.me/quejeh" class="nav-link"><i class="fa fa-telegram"></i></a>
+                            <button id="themeToggleBtn1"></button>
+                    </div>
                     <ul class="navbar-nav mr-auto smooth-scroll">
+                        
+                        <li> <a class="navbar-brand" href="index.html" style="font-family: 'Raleway', sans-serif;">
+                            <b>Стив Джобс Михайлович</b></a></li>
                         <li class="nav-item">
                             <a class="nav-link" href="#home">Домой</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#abouts">Биография</a>
                         </li>
-                    </ul>
-
-                    <ul class="navbar-nav nav-flex-icons">
+                    
                         <li class="nav-item">
                             <a href="https://vk.com/id312160380" class="nav-link"><i class="fa fa-vk"></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="https://t.me/quejeh" class="nav-link"><i class="fa fa-telegram"></i></a>
                         </li>
-                    </ul>
-
-                    <ul class="themeButton">
-                        <li class="nav-item">
+                        <li class="nav-item theme">
                             <button id="themeToggleBtn"></button>
                         </li>
                     </ul>
@@ -129,6 +138,8 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>  
 </body>
 </html>
