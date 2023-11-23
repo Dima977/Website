@@ -87,14 +87,17 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", function () {
     var navbar = document.querySelector(".navbar");
     var intro = document.querySelector(".intro");
+    var popap = document.getElementById("y8")
 
     function updateNavbar() {
         var scrollPosition = window.scrollY || window.pageYOffset;
 
         if (scrollPosition === 0) {
+            popap.style.opacity=0
             navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
         } else {
-            navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
+            navbar.style.backgroundColor = "rgba(51, 51, 51, 1)";
+            popap.style.opacity=1
         }
     }
 

@@ -168,7 +168,7 @@ footer a {
         height: 3px;
         top:50%;
         transform: translateY(-50%);
-        background-color: #333;
+        background-color: #ffffff;
         margin: 6px 0;
         transition: 0.4s;
       }
@@ -227,6 +227,9 @@ footer a {
 
     .navbar-nav.active {
         display: flex;
+    }
+    .burger{
+        color:#ffffff;
     }
 }
 
