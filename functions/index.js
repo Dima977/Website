@@ -37,9 +37,10 @@ app.post('/api/comments', async (req, res) => {
 
     const newComment = { username, comment, timestamp: new Date() };
     const comments = await loadComments();
+
     comments.push(newComment);
 
-    // Ожидание сохранения комментариев
+    // Сохранение комментариев в файл
     await saveComments(comments);
 
     res.json(newComment);
@@ -64,14 +65,8 @@ app.listen(port, () => {
 async function loadComments() {
   const filePath = path.join(__dirname, 'comments.json');
   try {
-    // Проверка наличия файла перед чтением
-    const exists = await fs.access(filePath).then(() => true).catch(() => false);
-    if (exists) {
-      const content = await fs.readFile(filePath, 'utf-8');
-      return JSON.parse(content) || [];
-    } else {
-      return [];
-    }
+    const content = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(content) || [];
   } catch (error) {
     return [];
   }
