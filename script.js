@@ -68,3 +68,24 @@ document.addEventListener("DOMContentLoaded", function () {
         navbarCollapse.classList.toggle("show");
     });
 });
+
+// Пример использования fetch для отправки комментария на бэкенд
+const commentData = {
+    username: 'John Doe',
+    comment: 'Замечательный сайт!',
+};
+
+fetch('https://your-backend-url/api/comments', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(commentData),
+})
+.then(response => response.json())
+.then(newComment => {
+    console.log('Новый комментарий:', newComment);
+})
+.catch(error => {
+    console.error('Ошибка при отправке комментария:', error);
+});
