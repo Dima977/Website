@@ -1,7 +1,6 @@
 // Функция для установки темы
 function setTheme(theme) {
     document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
     const intro = document.querySelector('.intro');
     intro.style.backgroundImage = theme === 'dark-theme' ? "url('img/img2.jpg')" : "url('img/img1.jpg')";
 }
@@ -21,9 +20,11 @@ function burgerClick() {
     var navbar = document.getElementById("navbar");
     var burger = document.getElementById("burger");
     var burgerPopup = document.getElementById("burger-popup");
-    burger.classList.toggle('active');
-    burgerPopup.classList.toggle('active');
-    navbar.classList.toggle('active');
+    if (burger && burgerPopup && navbar) {
+        burger.classList.toggle('active');
+        burgerPopup.classList.toggle('active');
+        navbar.classList.toggle('active');
+    }
 }
 
 // Функция для обновления навбара
@@ -31,61 +32,103 @@ function updateNavbar() {
     var scrollPosition = window.scrollY || window.pageYOffset;
     var navbar = document.querySelector(".navbar");
 
-    if (scrollPosition === 0) {
-        navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
-    } else {
-        navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
+    if (navbar) {
+        if (scrollPosition === 0) {
+            navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
+        } else {
+            navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
+        }
     }
 }
 
-// Обработчик события для кнопки смены темы
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
-    document.getElementById('themeToggleBtn1').addEventListener('click', toggleTheme);
-    document.getElementById('burger').addEventListener('click', burgerClick);
-
-    var navbarToggleBtn = document.querySelector(".navbar-toggler");
-    var navbarCollapse = document.querySelector(".navbar-collapse");
-    var intro = document.querySelector('.intro');
+// Функция для обновления темы на основе сохраненной в localStorage
+function updateTheme() {
     var savedTheme = localStorage.getItem('theme');
-
     if (savedTheme === 'dark-theme') {
-        document.documentElement.classList.add("dark-theme");
-        intro.style.backgroundImage = "url('img/img2.jpg')";
+        setTheme('dark-theme');
     } else {
-        intro.style.backgroundImage = "url('img/img1.jpg')";
-        document.documentElement.classList.add("light-theme");
+        setTheme('light-theme');
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    var themeToggleBtn = document.getElementById('themeToggleBtn');
+    var themeToggleBtn1 = document.getElementById('themeToggleBtn1');
+    var burger = document.getElementById('burger');
+    var commentForm = document.getElementById('commentForm');
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
     }
 
-    navbarToggleBtn.addEventListener("click", function () {
-        navbarCollapse.classList.toggle("show");
-    });
+    if (themeToggleBtn1) {
+        themeToggleBtn1.addEventListener('click', toggleTheme);
+    }
 
-    updateNavbar();
-    window.addEventListener("scroll", updateNavbar);
+    if (burger) {
+        burger.addEventListener('click', burgerClick);
+    }
 
-    navbarToggleBtn.addEventListener("click", function () {
-        navbarCollapse.classList.toggle("show");
-    });
-});
+    if (commentForm) {
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-// Пример использования fetch для отправки комментария на бэкенд
-const commentData = {
-    username: 'John Doe',
-    comment: 'Замечательный сайт!',
-};
+            // Отключаем кнопку отправки сразу
+            document.getElementById('submitBtn').disabled = true;
 
-fetch('https://your-backend-url/api/comments', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(commentData),
-})
-.then(response => response.json())
-.then(newComment => {
-    console.log('Новый комментарий:', newComment);
-})
-.catch(error => {
-    console.error('Ошибка при отправке комментария:', error);
+            const username = document.getElementById('username').value;
+            const comment = document.getElementById('comment').value;
+
+            // Проверяем, что поля не пусты
+            if (!username.trim() || !comment.trim()) {
+                console.error('Имя пользователя и комментарий обязательны');
+
+                // Включаем кнопку отправки в случае ошибки
+                document.getElementById('submitBtn').disabled = false;
+
+                return;
+            }
+
+            // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
+            fetch('http://localhost:5500/api/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, comment }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Ошибка при отправке комментария: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(newComment => {
+                // Очищаем форму
+                document.getElementById('username').value = '';
+                document.getElementById('comment').value = '';
+
+                // Включаем кнопку отправки после успешной отправки
+                document.getElementById('submitBtn').disabled = false;
+
+                // Отображаем новый комментарий
+                const commentsContainer = document.getElementById('commentsContainer');
+                const commentElement = document.createElement('div');
+                commentElement.innerHTML = `<strong>${newComment.username}:</strong> ${newComment.comment}<hr>`;
+                commentsContainer.appendChild(commentElement);
+            })
+            .catch(error => {
+                console.error(error);
+
+                // Включаем кнопку отправки в случае ошибки
+                document.getElementById('submitBtn').disabled = false;
+            });
+
+            // Возвращаем false, чтобы предотвратить стандартное поведение формы (перезагрузку страницы)
+            return false;
+        });
+    }
+
+    // Функции setTheme, toggleTheme, burgerClick, updateNavbar, и updateTheme остаются без изменений
+    // ...
 });

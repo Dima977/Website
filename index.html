@@ -138,6 +138,31 @@
                     </div>
                 </div>
             </section>
+            <section id="comments" class="text-center">
+                <div class="container mt-5">
+                    <h2 class="section-heading h1 pt-4">Комментарии</h2>
+                    
+                    <!-- Форма для оставления комментария -->
+                    <form id="commentForm">
+                        <div class="row">
+                            <div class="col-md-6 mx-auto">
+                                <div class="md-form">
+                                    <input type="text" id="username" name="username" class="form-control">
+                                    <label for="username">Ваше имя</label>
+                                </div>
+                                <div class="md-form">
+                                    <textarea id="comment" name="comment" class="form-control md-textarea" rows="3"></textarea>
+                                    <label for="comment">Ваш комментарий</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">Оставить комментарий</button>
+                            </div>
+                        </div>
+                    </form>
+    
+                    <!-- Контейнер для отображения комментариев -->
+                    <div id="commentsContainer" class="mt-4"></div>
+                </div>
+            </section>
     <footer class="page-footer blue center-on-small-only unique-color-dark pt-0">
         <div class="unique-color">
             <div class="container">
@@ -153,6 +178,7 @@
             </div>
         </div>
     </footer>
+    <script defer src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="script.js"></script>  
