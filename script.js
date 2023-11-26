@@ -157,8 +157,9 @@ function setTheme(theme) {
         })
         .catch(error => console.error('Error loading comments:', error));
     }
-  
+    
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
     loadAllComments();
+    
   });
   
