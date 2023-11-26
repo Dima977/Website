@@ -10,11 +10,6 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
 
-// Роут для главной страницы
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
-});
-
 // Роут для получения комментариев
 app.get('/api/comments', async (req, res) => {
   try {
