@@ -111,6 +111,7 @@ function setTheme(theme) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true',
           },
           body: JSON.stringify({ username, comment }),
         })
@@ -144,7 +145,11 @@ function setTheme(theme) {
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('https://d68c-134-195-196-178.ngrok-free.app/api/comments')
+      fetch('https://d68c-134-195-196-178.ngrok-free.app/api/comments', {
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+          },
+        })
         .then(response => response.json())
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
