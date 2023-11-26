@@ -152,7 +152,6 @@ function setTheme(theme) {
           comments.forEach(comment => {
             const commentElement = document.createElement('div');
             commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
-            
             commentsContainer.appendChild(commentElement);
           });
         })
