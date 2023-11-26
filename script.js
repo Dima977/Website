@@ -36,7 +36,7 @@ function setTheme(theme) {
       if (scrollPosition === 0) {
         navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
       } else {
-        navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
+        navbar.style.backgroundColor = "rgba(51, 51, 51, 1)"; // Измените цвет по необходимости
       }
     }
   }
@@ -106,7 +106,6 @@ function setTheme(theme) {
         // Отключаем кнопку отправки, чтобы избежать множественных отправок
         document.getElementById('submitBtn').disabled = true;
   
-        // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
         fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
           method: 'POST',
           headers: {
@@ -140,8 +139,8 @@ function setTheme(theme) {
   
         // Возвращаем false, чтобы предотвратить стандартное поведение формы (перезагрузку страницы)
         return false;
-      });
-    }
+      }, { once: true });
+    } 
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {

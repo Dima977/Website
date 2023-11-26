@@ -7,10 +7,7 @@ const path = require('path');
 const cors = require('cors');
 
 app.use(express.static('public'));
-app.use(cors({
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 // Роут для получения комментариев
@@ -55,10 +52,9 @@ app.use((err, req, res, next) => {
 });
 
 // Слушаем указанный порт
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
 
 // Функция для загрузки комментариев из файла
 async function loadComments() {
