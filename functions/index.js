@@ -16,7 +16,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.static('public'));
-app.use(cors());
 app.use(bodyParser.json());
 
 // Роут для главной страницы
