@@ -149,11 +149,11 @@ function setTheme(theme) {
           if (!response.ok) {
             throw new Error(`Error loading comments: ${response.status}`);
           }
-          return response.json(); // Используем response.json()
+          return response.json();
         })
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
-          commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
+          commentsContainer.innerHTML = '';
           comments.forEach(comment => {
             const commentElement = document.createElement('div');
             commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
@@ -165,5 +165,6 @@ function setTheme(theme) {
     
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
     loadAllComments();
+    
   });
   
