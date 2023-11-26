@@ -107,7 +107,7 @@ function setTheme(theme) {
         document.getElementById('submitBtn').disabled = true;
   
         // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
-        fetch('https://6008-134-195-196-178.ngrok-free.app/api/comments', {
+        fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function setTheme(theme) {
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('https://6008-134-195-196-178.ngrok-free.app/api/comments', {
+      fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
         headers: {
           'ngrok-skip-browser-warning': 'true',
         },
