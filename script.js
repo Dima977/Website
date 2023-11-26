@@ -107,7 +107,7 @@ function setTheme(theme) {
         document.getElementById('submitBtn').disabled = true;
   
         // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
-        fetch('http://localhost:5500/api/comments', {
+        fetch('https://22f1-178-141-173-59.ngrok-free.app', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ function setTheme(theme) {
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('http://localhost:5500/api/comments')
+      fetch('https://22f1-178-141-173-59.ngrok-free.app')
         .then(response => response.json())
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
