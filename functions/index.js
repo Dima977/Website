@@ -6,15 +6,6 @@ const fs = require('fs').promises;
 const path = require('path');
 const cors = require('cors');
 
-// Настройка CORS для разрешения доступа с ngrok-домена
-const corsOptions = {
-  origin: 'https://22f1-178-141-173-59.ngrok-free.app/api/comments', // Замените на свой ngrok URL
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
-app.use(cors(corsOptions));
-
 app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,8 +19,7 @@ app.get('/', (req, res) => {
 app.get('/api/comments', async (req, res) => {
   try {
     const comments = await loadComments();
-    res.setHeader('Content-Type', 'application/json'); // Устанавливаем заголовок Content-Type
-    res.status(200).send(JSON.stringify(comments));
+    res.json(comments);
   } catch (error) {
     console.error('Error loading comments:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -68,7 +58,7 @@ app.use((err, req, res, next) => {
 
 // Слушаем указанный порт
 app.listen(port, () => {
-  console.log(`Port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 // Функция для загрузки комментариев из файла

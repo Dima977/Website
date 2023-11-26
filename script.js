@@ -145,26 +145,20 @@ function setTheme(theme) {
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
       fetch('https://22f1-178-141-173-59.ngrok-free.app/api/comments')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Error loading comments: ${response.status}`);
-          }
-          return response.json();
-        })
+        .then(response => response.json())
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
-          commentsContainer.innerHTML = '';
+          commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
           comments.forEach(comment => {
             const commentElement = document.createElement('div');
             commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
             commentsContainer.appendChild(commentElement);
           });
         })
-        .catch(error => console.error(error));
+        .catch(error => console.error('Error loading comments:', error));
     }
-    
+  
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
     loadAllComments();
-    
   });
   
