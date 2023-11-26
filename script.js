@@ -107,7 +107,7 @@ function setTheme(theme) {
         document.getElementById('submitBtn').disabled = true;
   
         // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
-        fetch('http://localhost:5500/api/comments', {
+        fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function setTheme(theme) {
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('http://localhost:5500/api/comments', {
+      fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
         headers: {
           'User-Agent': 'Your-User-Agent-String',
         },
