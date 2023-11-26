@@ -61,36 +61,16 @@ app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-// Функция для загрузки комментариев из файла с удалением дубликатов
+// Функция для загрузки комментариев из файла
 async function loadComments() {
   const filePath = path.join(__dirname, 'comments.json');
   try {
-    let content = await fs.readFile(filePath, 'utf-8');
-    const comments = JSON.parse(content) || [];
-
-    // Используем Set для отслеживания уникальных значений поля 'comment'
-    const uniqueCommentsSet = new Set();
-
-    // Фильтруем комментарии, добавляя в Set только уникальные значения поля 'comment'
-    const uniqueComments = comments.filter(comment => {
-      const isUnique = !uniqueCommentsSet.has(comment.comment);
-      if (isUnique) {
-        uniqueCommentsSet.add(comment.comment);
-      }
-      return isUnique;
-    });
-
-    // Перезаписываем файл без дубликатов
-    await fs.writeFile(filePath, JSON.stringify(uniqueComments, null, 2), 'utf-8');
-
-    // Возвращаем уникальные комментарии
-    return uniqueComments;
+    const content = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(content) || [];
   } catch (error) {
-    console.error('Error loading comments:', error);
     return [];
   }
 }
-
 
 // Функция для сохранения комментариев в файл
 async function saveComments(comments) {

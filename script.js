@@ -143,27 +143,43 @@ function setTheme(theme) {
       });
     }
   
-    // Добавьте функцию для загрузки всех комментариев
-    function loadAllComments() {
-      fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-        },
-      })
-        .then(response => response.json())
-        .then(comments => {
-          const commentsContainer = document.getElementById('commentsContainer');
-          commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
-          comments.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
-            commentsContainer.appendChild(commentElement);
-          });
-        })
-        .catch(error => console.error('Error loading comments:', error));
+    // Добавьте функцию для загрузки всех комментариев с удалением дубликатов
+function loadAllComments() {
+  fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
+    headers: {
+      'ngrok-skip-browser-warning': 'true',
+    },
+  })
+    .then(response => response.json())
+    .then(comments => {
+      const uniqueComments = removeDuplicateComments(comments); // Удаление дубликатов
+
+      const commentsContainer = document.getElementById('commentsContainer');
+      commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
+
+      uniqueComments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
+        commentsContainer.appendChild(commentElement);
+      });
+    })
+    .catch(error => console.error('Error loading comments:', error));
+}
+
+// Функция для удаления дубликатов по полю 'comment'
+function removeDuplicateComments(comments) {
+  const uniqueCommentsMap = {};
+  return comments.filter(comment => {
+    if (!uniqueCommentsMap[comment.comment]) {
+      uniqueCommentsMap[comment.comment] = true;
+      return true;
     }
-  
-    // Вызываем функцию загрузки всех комментариев при загрузке страницы
-    loadAllComments();
+    return false;
+  });
+}
+
+// Вызываем функцию загрузки всех комментариев при загрузке страницы
+loadAllComments();
+
   });
   
