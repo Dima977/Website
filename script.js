@@ -145,7 +145,12 @@ function setTheme(theme) {
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
       fetch('https://22f1-178-141-173-59.ngrok-free.app/api/comments')
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Ошибка при загрузке комментариев: ${response.status}`);
+          }
+          return response.json();
+        })
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
           commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
@@ -155,8 +160,9 @@ function setTheme(theme) {
             commentsContainer.appendChild(commentElement);
           });
         })
-        .catch(error => console.error('Error loading comments:', error));
+        .catch(error => console.error(`Error loading comments: ${error}`));
     }
+    
     
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
     loadAllComments();
