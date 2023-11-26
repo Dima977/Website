@@ -8,7 +8,7 @@ const cors = require('cors');
 
 // Настройка CORS для разрешения доступа с ngrok-домена
 const corsOptions = {
-  origin: 'https://22f1-178-141-173-59.ngrok-free.app', // Замените на свой ngrok URL
+  origin: 'https://22f1-178-141-173-59.ngrok-free.app/api/comments', // Замените на свой ngrok URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204,
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 // Роут для получения комментариев
-app.get('/', async (req, res) => {
+app.get('/api/comments', async (req, res) => {
   try {
     const comments = await loadComments();
     res.json(comments);
@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
 });
 
 // Роут для добавления комментария
-app.post('/', async (req, res) => {
+app.post('/api/comments', async (req, res) => {
   try {
     const { username, comment } = req.body;
 
