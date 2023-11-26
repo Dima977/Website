@@ -111,7 +111,7 @@ function setTheme(theme) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'User-Agent': 'Your-User-Agent-String',
+            'your-User-Agent-String': 'true',
           },
           body: JSON.stringify({ username, comment }),
         })
@@ -147,7 +147,7 @@ function setTheme(theme) {
     function loadAllComments() {
       fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
         headers: {
-          'User-Agent': 'Your-User-Agent-String',
+          'your-User-Agent-String': 'true',
         },
       })
         .then(response => response.json())
