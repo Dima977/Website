@@ -28,7 +28,8 @@ app.get('/', (req, res) => {
 app.get('/api/comments', async (req, res) => {
   try {
     const comments = await loadComments();
-    res.json(comments);
+    res.setHeader('Content-Type', 'application/json'); // Устанавливаем заголовок Content-Type
+    res.status(200).send(JSON.stringify(comments));
   } catch (error) {
     console.error('Error loading comments:', error);
     res.status(500).json({ error: 'Internal Server Error' });
