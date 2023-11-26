@@ -97,17 +97,14 @@ function setTheme(theme) {
         const username = document.getElementById('username').value;
         const comment = document.getElementById('comment').value;
   
-        // Проверяем, что поля не пусты
         if (!username.trim() || !comment.trim()) {
           console.error('Имя пользователя и комментарий обязательны');
           return;
         }
   
-        // Отключаем кнопку отправки, чтобы избежать множественных отправок
         document.getElementById('submitBtn').disabled = true;
   
-        // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
-        fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
+        fetch('https://d693-134-195-196-178.ngrok-free.app/api/comments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -122,30 +119,25 @@ function setTheme(theme) {
             return response.json();
           })
           .then(newComment => {
-            // Очищаем форму
+
             document.getElementById('username').value = '';
             document.getElementById('comment').value = '';
   
-            // Включаем кнопку отправки после успешной отправки
             document.getElementById('submitBtn').disabled = false;
   
-            // Загружаем все комментарии после добавления нового
             loadAllComments();
           })
           .catch(error => {
             console.error(error);
-            // Включаем кнопку отправки в случае ошибки
             document.getElementById('submitBtn').disabled = false;
           });
   
-        // Возвращаем false, чтобы предотвратить стандартное поведение формы (перезагрузку страницы)
         return false;
       });
     }
   
-    // Добавьте функцию для загрузки всех комментариев с удалением дубликатов
 function loadAllComments() {
-  fetch('https://a6ea-134-195-196-178.ngrok-free.app/api/comments', {
+  fetch('https://d693-134-195-196-178.ngrok-free.app/api/comments', {
     headers: {
       'ngrok-skip-browser-warning': 'true',
     },
@@ -166,7 +158,6 @@ function loadAllComments() {
     .catch(error => console.error('Error loading comments:', error));
 }
 
-// Функция для удаления дубликатов по полю 'comment'
 function removeDuplicateComments(comments) {
   const uniqueCommentsMap = {};
   return comments.filter(comment => {
@@ -178,7 +169,6 @@ function removeDuplicateComments(comments) {
   });
 }
 
-// Вызываем функцию загрузки всех комментариев при загрузке страницы
 loadAllComments();
 
   });
