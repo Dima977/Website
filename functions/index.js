@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 // Роут для получения комментариев
-app.get('/api/comments', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const comments = await loadComments();
     res.json(comments);
@@ -35,7 +35,7 @@ app.get('/api/comments', async (req, res) => {
 });
 
 // Роут для добавления комментария
-app.post('/api/comments', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     const { username, comment } = req.body;
 
