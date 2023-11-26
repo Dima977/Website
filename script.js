@@ -145,26 +145,27 @@ function setTheme(theme) {
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
       fetch('https://22f1-178-141-173-59.ngrok-free.app/api/comments')
-        .then(response => response.text())  // Используем response.text() вместо response.json()
-        .then(jsonString => {
-          try {
-            const comments = JSON.parse(jsonString);
-            const commentsContainer = document.getElementById('commentsContainer');
-            commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
-            comments.forEach(comment => {
-              const commentElement = document.createElement('div');
-              commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
-              commentsContainer.appendChild(commentElement);
-            });
-          } catch (error) {
-            console.error('Error parsing JSON:', error);
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error loading comments: ${response.status}`);
           }
+          return response.json(); // Используем response.json()
         })
-        .catch(error => console.error('Error loading comments:', error));
+        .then(comments => {
+          const commentsContainer = document.getElementById('commentsContainer');
+          commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
+          comments.forEach(comment => {
+            const commentElement = document.createElement('div');
+            commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
+            commentsContainer.appendChild(commentElement);
+          });
+        })
+        .catch(error => console.error(error));
     }
     
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
     loadAllComments();
+    
     
     
   });
