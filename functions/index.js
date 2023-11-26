@@ -52,9 +52,10 @@ app.use((err, req, res, next) => {
 });
 
 // Слушаем указанный порт
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
 
 // Функция для загрузки комментариев из файла
 async function loadComments() {
