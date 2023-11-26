@@ -148,12 +148,15 @@ function setTheme(theme) {
       fetch('https://22d1-134-195-196-178.ngrok-free.app/api/comments')
         .then(response => {
           console.log('Статус ответа:', response.status);
+          if (!response.ok) {
+            throw new Error('Сетевой запрос завершился неудачей');
+          }
           return response.json();
         })
         .then(comments => {
           console.log('Комментарии получены:', comments);
           const commentsContainer = document.getElementById('commentsContainer');
-          commentsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых комментариев
+          commentsContainer.innerHTML = '';
           comments.forEach(comment => {
             const commentElement = document.createElement('div');
             commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}<hr>`;
@@ -161,7 +164,9 @@ function setTheme(theme) {
           });
           console.log('Комментарии успешно отображены');
         })
-        .catch(error => console.error('Ошибка при загрузке комментариев:', error));
+        .catch(error => {
+          console.error('Ошибка при загрузке комментариев:', error);
+        });
     }
     
     // Вызываем функцию загрузки всех комментариев при загрузке страницы
