@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5501;
+const port = process.env.PORT || 5500;
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
 const path = require('path');
@@ -9,6 +9,11 @@ const cors = require('cors');
 app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
+
+// Роут для главной страницы
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 // Роут для получения комментариев
 app.get('/api/comments', async (req, res) => {

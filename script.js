@@ -36,7 +36,7 @@ function setTheme(theme) {
       if (scrollPosition === 0) {
         navbar.style.backgroundColor = "rgba(51, 51, 51, 0)";
       } else {
-        navbar.style.backgroundColor = "rgba(51, 51, 51, 1)"; // Измените цвет по необходимости
+        navbar.style.backgroundColor = "rgba(51, 51, 51, 0.5)"; // Измените цвет по необходимости
       }
     }
   }
@@ -106,11 +106,12 @@ function setTheme(theme) {
         // Отключаем кнопку отправки, чтобы избежать множественных отправок
         document.getElementById('submitBtn').disabled = true;
   
-        fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
+        // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
+        fetch('http://localhost:5500/api/comments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': 'true',
+            'User-Agent': 'Your-User-Agent-String',
           },
           body: JSON.stringify({ username, comment }),
         })
@@ -139,16 +140,16 @@ function setTheme(theme) {
   
         // Возвращаем false, чтобы предотвратить стандартное поведение формы (перезагрузку страницы)
         return false;
-      }, { once: true });
-    } 
+      });
+    }
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('https://eedf-134-195-196-178.ngrok-free.app/api/comments', {
-  headers: {
-    'ngrok-skip-browser-warning': 'true',
-  },
-})
+      fetch('http://localhost:5500/api/comments', {
+        headers: {
+          'User-Agent': 'Your-User-Agent-String',
+        },
+      })
         .then(response => response.json())
         .then(comments => {
           const commentsContainer = document.getElementById('commentsContainer');
