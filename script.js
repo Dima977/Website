@@ -107,11 +107,11 @@ function setTheme(theme) {
         document.getElementById('submitBtn').disabled = true;
   
         // Отправляем данные на бэкенд (замените URL на ваш бэкенд)
-        fetch('http://localhost:5500/api/comments', {
+        fetch('https://6008-134-195-196-178.ngrok-free.app/api/comments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'User-Agent': 'Your-User-Agent-String',
+            'ngrok-skip-browser-warning': 'true',
           },
           body: JSON.stringify({ username, comment }),
         })
@@ -145,9 +145,9 @@ function setTheme(theme) {
   
     // Добавьте функцию для загрузки всех комментариев
     function loadAllComments() {
-      fetch('http://localhost:5500/api/comments', {
+      fetch('https://6008-134-195-196-178.ngrok-free.app/api/comments', {
         headers: {
-          'User-Agent': 'Your-User-Agent-String',
+          'ngrok-skip-browser-warning': 'true',
         },
       })
         .then(response => response.json())

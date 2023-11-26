@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 5501;
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
 const path = require('path');
@@ -8,7 +8,7 @@ const cors = require('cors');
 
 app.use(express.static('public'));
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Роут для главной страницы
 app.get('/', (req, res) => {
